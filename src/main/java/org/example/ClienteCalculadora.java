@@ -8,11 +8,18 @@ public class ClienteCalculadora {
             PrintWriter salida = new PrintWriter(
                     socket.getOutputStream(), true
             );
-            int mensaje1 = 5;
-            int mensaje2 = 3;
+            String mensaje1 = "5";
+            String mensaje2 = "3";
 
             salida.println(mensaje1);
             salida.println(mensaje2);
+
+            BufferedReader entrada = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream())
+            );
+            String resultado = entrada.readLine();
+            System.out.println("resultado: "+ resultado);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

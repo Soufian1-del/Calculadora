@@ -14,11 +14,18 @@ public class ServidorCalculadora {
             BufferedReader entrada = new BufferedReader(
                     new InputStreamReader(cliente.getInputStream())
             );
-            int mensaje1 = entrada.read();
-            int mensaje2 = entrada.read();
-            System.out.println(mensaje1);
-            System.out.println(mensaje2);
-            System.out.println(mensaje1 + mensaje2);
+            String mensaje1 = entrada.readLine();
+            Integer numero2 = Integer.parseInt(mensaje1);
+            String mensaje2 = entrada.readLine();
+            Integer numero1 = Integer.parseInt(mensaje2);
+            int resultado = numero1+numero2;
+            System.out.println("resultado de: " + numero1 + " y " + numero2 + " enviado al cliente");
+            System.out.println("resultado esperado:"  + resultado);
+
+            PrintWriter salida = new PrintWriter(
+                    cliente.getOutputStream(), true
+            );
+            salida.println(resultado);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
