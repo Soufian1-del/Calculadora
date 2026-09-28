@@ -18,7 +18,13 @@ public class ServidorCalculadora {
             Integer numero2 = Integer.parseInt(mensaje1);
             String mensaje2 = entrada.readLine();
             Integer numero1 = Integer.parseInt(mensaje2);
-            int resultado = numero1+numero2;
+            String Operacion = entrada.readLine();
+            int resultado = 0;
+            if (Operacion.equalsIgnoreCase("suma")) {
+                resultado= numero1+numero2;
+            } else if (Operacion.equalsIgnoreCase("resta")) {
+                resultado=numero1-numero2;
+            }
             System.out.println("resultado de: " + numero1 + " y " + numero2 + " enviado al cliente");
             System.out.println("resultado esperado:"  + resultado);
 
