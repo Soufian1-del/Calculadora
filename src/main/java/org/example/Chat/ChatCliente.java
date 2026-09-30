@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.util.Scanner;
 
 public class ChatCliente {
     public static void main(String[] args) {
@@ -16,8 +17,21 @@ public class ChatCliente {
                     ChatCliente.getOutputStream(), true
             );
             BufferedReader entrada = new BufferedReader(
-                    new InputStreamReader(ChatServidor.getInputStream())
+                    new InputStreamReader(ChatCliente.getInputStream())
             );
+            Scanner sc = new Scanner(System.in);
+            while (true) {
+                System.out.print("Enviando: ");
+                String Enviado = sc.nextLine();
+                salida.println(Enviado);
+                String Recibido = entrada.readLine();
+                System.out.println("Recibido: "+ Recibido);
+                if(Enviado.equalsIgnoreCase("EXIt") || Recibido.equalsIgnoreCase("EXIt")){
+                    break;
+                }
+            }
+            ChatCliente.close();
+
         } catch (RuntimeException | IOException e) {
             throw new RuntimeException(e);
         }
