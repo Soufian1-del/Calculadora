@@ -10,6 +10,7 @@ public class AdivinaCliente {
     public static void main(String[] args) {
         try {
             Socket socket = new Socket("localhost", 5000);
+            System.out.println("Conexion establecida correctamente.");
             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             System.out.println(entrada.readLine());
             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
@@ -20,7 +21,7 @@ public class AdivinaCliente {
                 salida.println(intento);
                 String resultado = entrada.readLine();
                 System.out.println(resultado);
-                if(resultado.contains("Enhorabuena")){
+                if(resultado.contains("Enhorabuena el número era:")){
                     break;
                 }
             }

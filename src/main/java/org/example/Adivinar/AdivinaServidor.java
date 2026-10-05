@@ -10,10 +10,11 @@ public class AdivinaServidor {
     public static void main(String[] args) {
         try {
             ServerSocket servidor = new ServerSocket(5000);
+            System.out.println("Iniciando servidor");
             System.out.println("Esperando cliente");
             Socket cliente = servidor.accept();
             System.out.println("Cliente conectado correctamente");
-            int random = (int) (Math.random() * 100) + 1; //numero random [1,100]
+            int numero = (int) (Math.random() * 100) + 1;
             PrintWriter salida = new PrintWriter(cliente.getOutputStream(), true);
             salida.println("Adivina el numero entre 1 y 100");
             BufferedReader entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
@@ -24,14 +25,14 @@ public class AdivinaServidor {
                     intento = Integer.parseInt(intentoStr);
                 } catch (Exception e) {
                     salida.println("Intento no válido");
-                    continue;
+                    break;
                 }
-                if(intento < random){
+                if(intento < numero){
                     salida.println("Mayor");
-                } else if (intento > random) {
+                } else if (intento > numero) {
                     salida.println("Menor");
                 }else{
-                    salida.println("Enhorabuena el número era: " + random);
+                    salida.println("Enhorabuena el número era: " + numero);
                     break;
                 }
             }
