@@ -6,12 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.ConnectException;
 import java.util.Scanner;
 
 public class ErroresServidor {
     public static void main(String[] args) {
         try {
-            ServerSocket ChatServidor = new ServerSocket(5000);
+            ServerSocket ChatServidor = new ServerSocket(8000);
             System.out.println("Iniciando servidor");
             System.out.println("Esperando cliente");
             Socket chatCliente = ChatServidor.accept();
@@ -37,7 +38,8 @@ public class ErroresServidor {
             ChatServidor.close();
             chatCliente.close();
 
-        } catch (RuntimeException | IOException e) {
+        } catch (ConnectException c){
+            System.out.println("El servidor no esta conectado");        } catch (RuntimeException | IOException e) {
             throw new RuntimeException(e);
         }
     }
