@@ -1,4 +1,4 @@
-package org.example.Calculadora;
+package org.example.TCP.Calculadora;
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;

@@ -1,17 +1,17 @@
-package org.example.Chat;
+package org.example.TCP.Mayusculas;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.util.Scanner;
 
-public class ChatCliente {
+public class ClienteMayusculas {
     public static void main(String[] args) {
         try {
-            Socket ChatCliente = new Socket("localhost", 5000);
+            Socket ChatCliente = new Socket("localhost", 6000);
             System.out.println("Conexion establecida correctamente.");
             PrintWriter salida = new PrintWriter(
                     ChatCliente.getOutputStream(), true
@@ -32,8 +32,10 @@ public class ChatCliente {
             }
             ChatCliente.close();
 
-        } catch (RuntimeException | IOException e) {
-            throw new RuntimeException(e);
+        } catch (ConnectException e){
+            System.out.println("fallo en la conexion");
+        } catch (IOException e) {
+            System.out.println("fallo en la conexion");
         }
     }
 }

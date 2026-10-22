@@ -1,4 +1,4 @@
-package org.example.ClienteServidor;// SERVIDOR ROBUSTO (ServidorRobusto.java)
+package org.example.TCP.ClienteServidor;// SERVIDOR ROBUSTO (ServidorRobusto.java)
 import java.io.*;
 import java.net.*;
 public class ServidorRobusto {

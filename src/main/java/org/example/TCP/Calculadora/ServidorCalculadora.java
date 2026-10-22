@@ -1,4 +1,4 @@
-package org.example.Calculadora;
+package org.example.TCP.Calculadora;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

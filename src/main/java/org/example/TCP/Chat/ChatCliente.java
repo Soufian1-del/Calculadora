@@ -1,13 +1,13 @@
-package org.example.Adivinar;
+package org.example.TCP.Chat;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.Socket;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.Scanner;
 
-public class AdivinaCliente {
+public class ChatCliente {
     public static void main(String[] args) {
         try {
             Socket ChatCliente = new Socket("localhost", 5000);
@@ -20,12 +20,12 @@ public class AdivinaCliente {
             );
             Scanner sc = new Scanner(System.in);
             while (true) {
-                System.out.print("numero: ");
+                System.out.print("Enviando: ");
                 String Enviado = sc.nextLine();
                 salida.println(Enviado);
                 String Recibido = entrada.readLine();
                 System.out.println("Recibido: "+ Recibido);
-                if(Recibido.equalsIgnoreCase("numero acertado")){
+                if(Enviado.equalsIgnoreCase("EXIt") || Recibido.equalsIgnoreCase("EXIt")){
                     break;
                 }
             }
@@ -36,5 +36,3 @@ public class AdivinaCliente {
         }
     }
 }
-
-

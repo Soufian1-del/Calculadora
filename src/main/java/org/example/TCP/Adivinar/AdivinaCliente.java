@@ -1,18 +1,16 @@
-package org.example.Mayusculas;
+package org.example.TCP.Adivinar;
 
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.Socket;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Scanner;
 
-public class ClienteMayusculas {
+public class AdivinaCliente {
     public static void main(String[] args) {
         try {
-            Socket ChatCliente = new Socket("localhost", 6000);
+            Socket ChatCliente = new Socket("localhost", 5000);
             System.out.println("Conexion establecida correctamente.");
             PrintWriter salida = new PrintWriter(
                     ChatCliente.getOutputStream(), true
@@ -22,21 +20,21 @@ public class ClienteMayusculas {
             );
             Scanner sc = new Scanner(System.in);
             while (true) {
-                System.out.print("Enviando: ");
+                System.out.print("numero: ");
                 String Enviado = sc.nextLine();
                 salida.println(Enviado);
                 String Recibido = entrada.readLine();
                 System.out.println("Recibido: "+ Recibido);
-                if(Enviado.equalsIgnoreCase("EXIt") || Recibido.equalsIgnoreCase("EXIt")){
+                if(Recibido.equalsIgnoreCase("numero acertado")){
                     break;
                 }
             }
             ChatCliente.close();
 
-        } catch (ConnectException e){
-            System.out.println("fallo en la conexion");
-        } catch (IOException e) {
-            System.out.println("fallo en la conexion");
+        } catch (RuntimeException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
+
+

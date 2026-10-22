@@ -1,14 +1,14 @@
-package org.example.Adivinar;
+package org.example.TCP.Chat;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class AdivinaServidor {
+public class ChatServidor {
     public static void main(String[] args) {
         try {
             ServerSocket ChatServidor = new ServerSocket(5000);
@@ -22,20 +22,15 @@ public class AdivinaServidor {
                     new InputStreamReader(chatCliente.getInputStream())
             );
             Scanner sc = new Scanner(System.in);
-            int numero = (int) (Math.random() * 100) + 1;
 
             while(true){
                 String Recibido = entrada.readLine();
-                Integer recibidoNumero = Integer.parseInt(Recibido);
-                if(numero<recibidoNumero){
-                    String menor = "menor";
-                    salida.println(menor);
-                } else if (numero>recibidoNumero) {
-                    String mayor = "mayor";
-                    salida.println(mayor);
-                } else{
-                    String acertado = "numero acertado";
-                    salida.println(acertado);
+                System.out.println("Recibido: "+ Recibido);
+                System.out.print("Enviando: ");
+                String Enviado = sc.nextLine();
+                salida.println(Enviado);
+
+                if(Recibido.equalsIgnoreCase("EXIt") || Enviado.equalsIgnoreCase("EXIt") ){
                     break;
                 }
             }
@@ -47,4 +42,3 @@ public class AdivinaServidor {
         }
     }
 }
-
